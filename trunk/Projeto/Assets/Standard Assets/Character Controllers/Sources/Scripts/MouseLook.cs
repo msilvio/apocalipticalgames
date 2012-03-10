@@ -56,6 +56,7 @@ public class MouseLook : MonoBehaviour {
 	
 	void Start ()
 	{
+		Screen.lockCursor = true;
 		// Make the rigid body not change rotation
 		if (rigidbody)
 			rigidbody.freezeRotation = true;
