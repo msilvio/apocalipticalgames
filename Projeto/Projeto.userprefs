@@ -1,0 +1,17 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\100M-Obstaculos\Scripts\MoveDummy.cs">
+    <Files>
+      <File FileName="Assets\100M-Obstaculos\Scripts\MovePlayer.cs" Line="13" Column="1" />
+      <File FileName="Assets\100M-Obstaculos\Scripts\Jump_detector.cs" Line="31" Column="33" />
+      <File FileName="Assets\100M-Obstaculos\Scripts\Detector.cs" Line="24" Column="45" />
+      <File FileName="Assets\100M-Obstaculos\Scripts\ReactionCommandCreator.cs" Line="96" Column="20" />
+      <File FileName="Assets\100M-Obstaculos\Scripts\MoveDummy.cs" Line="18" Column="1" />
+      <File FileName="F:\TDRod\Assets\Scripts\EnemyController.cs" Line="28" Column="82" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
