@@ -50,7 +50,7 @@ public class ShooterBehaviour : MonoBehaviour {
 	private GameControllerBehaviour controllerScript;
 	
 	//Player positioning and Movement
-	public int maxLives = 5;
+	public int maxLives = 10;
 	private int nLives;
 	private GameObject[] shootPostsT;
 	private int postId = 0;
@@ -66,7 +66,7 @@ public class ShooterBehaviour : MonoBehaviour {
 
 	
 	void Start () {
-		nLives = maxLives;
+		nLives = 5;
 		this.camT = Camera.mainCamera;
 		this.pState = PlayerState.OK;
 		this.shootPostsT = GameObject.FindGameObjectsWithTag("ShootingPost");

@@ -16,6 +16,10 @@ public class GameControllerBehaviour : MonoBehaviour {
 	public float spawnTime;
 	public float decreasingFactor;
 	public AudioClip gameOverSound;
+	public Texture healthHeart;
+	public Texture ammoTexture;
+	public float firstPositionHeartX;
+	public float firstPositionAmmoX;
 	
 	private GameObject[] spawnPoints;
 	private GameObject[] objectivePoints;
@@ -37,6 +41,8 @@ public class GameControllerBehaviour : MonoBehaviour {
 	
 	private GameObject highscoreGO;
 	private HighscoreKeeperBehaviour highscoreScript;
+	
+	GUIStyle style = new GUIStyle();
 	
 	void Awake(){
 		this.continueSpawning = true;
@@ -64,7 +70,7 @@ public class GameControllerBehaviour : MonoBehaviour {
 		sortArrayByPosX(spawnPoints);
 		sortArrayByPosX(objectivePoints);
 		
-		
+		firstPositionHeartX = 0.0f;
 		
 		actualTimer = spawnTime;
 	}
@@ -168,12 +174,51 @@ public class GameControllerBehaviour : MonoBehaviour {
 		Start();
 	}
 	
+	public float getNewPositionHeart(int i){
+		return firstPositionHeartX + (i * healthHeart.width);
+	}
+	
+	public float getNewPositionAmmo(int i){
+		return firstPositionAmmoX + (i * ammoTexture.width);
+	}
+	
+	private float getHalfHeightScreen(){
+		return Screen.height / 2;
+	}
+	
+	private float getHalfWidthScreen(){
+		return Screen.width / 2;
+	}
+	
+	private float getPositionAmmoY(){
+		return Screen.height - ammoTexture.height;
+	}
+	
+	private float getPositionHeartY(){
+		return 0;
+	}
 	
 	
 	void OnGUI(){
-		GUI.Label(new Rect(0, 0, 100, 20),"Score: " + this.roundScore);
-		GUI.Label(new Rect(0, 25, 100, 20),"Ammo: " + playerScript.getAmmo());
-		GUI.Label(new Rect(0, 50, 100, 20), "Lives: " + playerScript.getnLives());
+		GUI.Label(new Rect(0, getHalfHeightScreen(), 100, 20),"Score: " + this.roundScore);
+		//GUI.Label(new Rect(0, 25, 100, 20),"Ammo: " + playerScript.getAmmo());
+		//GUI.Label(new Rect(0, 50, 100, 20), "Lives: " + playerScript.getnLives());
+		
+		for(int i = 0; i < playerScript.getnLives(); i++){
+			GUI.DrawTexture(new Rect(getNewPositionHeart(i), getPositionHeartY(), healthHeart.width, healthHeart.height), healthHeart);
+			//posicaoXInicial = posicaoXInicial + guiTexture.pixelInset.width;	
+		}
+		
+		for(int j = 0; j < playerScript.getAmmo(); j++){
+			GUI.DrawTexture(new Rect(getNewPositionAmmo(j), getPositionAmmoY(), ammoTexture.width, ammoTexture.height), ammoTexture);	
+			//posicaoXInicial = posicaoXInicial + guiTexture.pixelInset.width;	
+		}
+		
+		if(playerScript.getAmmo() <= 0){
+			style.fontStyle = FontStyle.Bold;
+			style.fontSize = 26;
+			GUI.Label(new Rect(getHalfWidthScreen(), getHalfHeightScreen(), 200, 40),"RELOAD", style);
+		}
 	}
 	
 	void sortArrayByPosX(GameObject[] array){
