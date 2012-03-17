@@ -6,6 +6,17 @@ var rotationSpeed = 3; //speed of turning
 
 var myTransform : Transform; //current transform data of this enemy
 
+var vidaJogador: boolean;
+
+var estiloTexto: GUIStyle;
+
+function OnGUI()
+{
+	if(vidaJogador == false)
+	{
+		GUILayout.Label("VOCE MORREU...", estiloTexto);
+	}
+}
 
 function OnTriggerEnter (other : Collider) 
 	{
@@ -18,6 +29,7 @@ function OnTriggerEnter (other : Collider)
 function Awake()
 {
     myTransform = transform; //cache transform data for easy access/preformance
+    vidaJogador = true;
 }
 
 function Start()
@@ -41,6 +53,7 @@ function OnCollisionEnter (other : Collision){
 	
 	if (other.gameObject.tag == "Player")
     {
+    	vidaJogador = false;
     	Destroy(other.gameObject);
     	Time.timeScale = 0;
 	} 
