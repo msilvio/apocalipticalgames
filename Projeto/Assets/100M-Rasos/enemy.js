@@ -9,11 +9,25 @@ var object : GameObject;
 
 var perseguirJogador : boolean;// = false;
 
+var vidaJogador: boolean;
+
+var estiloTexto: GUIStyle;
+
+function OnGUI()
+{
+	if(vidaJogador == false)
+	{
+		GUILayout.Label("VOCE MORREU...", estiloTexto);
+	}
+}
+
 function Awake()
 {
     myTransform = transform; //cache transform data for easy access/preformance
     
     perseguirJogador = false;
+    
+    vidaJogador = true;
 }
 
 function Start()
@@ -62,6 +76,7 @@ function OnCollisionEnter (other : Collision){
 	
 	if (other.gameObject.tag == "Player")
     {
+    	vidaJogador = false;
     	Destroy(other.gameObject);
     	Time.timeScale = 0;
 	} 
